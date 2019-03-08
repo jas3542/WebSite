@@ -1,0 +1,18 @@
+﻿@model List<Website.Models.Person>
+
+@{
+    ViewBag.Title = "Person";
+}
+<table>
+    <thead></thead>
+    <tbody>
+        <tr><th><h2>Persons List</h2></th></tr>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person._name</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
