@@ -1,0 +1,25 @@
+﻿@model List<Website.Models.Person>
+
+@{
+    ViewBag.Title = "Person";
+}
+@Html.ActionLink("Add New Person", "addPerson");
+<table>
+    <tr>
+        <th> @Html.DisplayNameFor(model => model[0]._name) </th>
+        <th> @Html.DisplayNameFor(model => model[0]._surname) </th>
+        <th> @Html.DisplayNameFor(model => model[0]._age) </th>
+        <th> @Html.DisplayNameFor(model => model[0]._isAlive) </th>
+
+    </tr>
+        @foreach (var person in Model)
+        {
+    <tr>
+        <td> @Html.DisplayFor(p => person._name) </td>
+        <td> @Html.DisplayFor(p => person._surname) </td>
+        <td> @Html.DisplayFor(p => person._age) </td>
+        <td> @Html.DisplayFor(p => person._isAlive) </td>
+    </tr>
+        }
+
+</table>

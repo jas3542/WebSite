@@ -7,11 +7,11 @@ using Website.Models;
 
 namespace Website.Controllers
 {
-    public class PersonsController : Controller
+    public class PersonController : Controller
     {
         private List<Person> _personList;
 
-        public PersonsController()
+        public PersonController()
         {
             initializePersonsList(); 
         }
@@ -25,15 +25,20 @@ namespace Website.Controllers
         {
             _personList = new List<Person>();
 
-            _personList.Add(new Person("James"));
-            _personList.Add(new Person("Tom"));
-            _personList.Add(new Person("Margarita"));
-            _personList.Add(new Person("Pilar"));
+            _personList.Add(new Person("James","Smith",20));
+            _personList.Add(new Person("Tom","Dip",27));
+            _personList.Add(new Person("Margarita","flores",30));
         }
 
-        public ActionResult Persons()
+        public ActionResult PersonList()
         {
-            return View("Person",_personList);
+            return View(_personList);
+        }
+
+        public ActionResult addPerson()
+        {
+            _personList.Add(new Person("test", "test", 30));
+            return View("PersonList", _personList);
         }
     }
 }
