@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Person";
 }
-@Html.ActionLink("Add New Person", "addPerson");
+
 <table>
     <tr>
         <th> @Html.DisplayNameFor(model => model[0]._name) </th>
@@ -12,14 +12,24 @@
         <th> @Html.DisplayNameFor(model => model[0]._isAlive) </th>
 
     </tr>
-        @foreach (var person in Model)
-        {
-    <tr>
-        <td> @Html.DisplayFor(p => person._name) </td>
-        <td> @Html.DisplayFor(p => person._surname) </td>
-        <td> @Html.DisplayFor(p => person._age) </td>
-        <td> @Html.DisplayFor(p => person._isAlive) </td>
-    </tr>
-        }
-
+    @foreach (var person in Model)
+    {
+        <tr>
+            <td> @Html.DisplayFor(p => person._name) </td>
+            <td> @Html.DisplayFor(p => person._surname) </td>
+            <td> @Html.DisplayFor(p => person._age) </td>
+            <td> @Html.DisplayFor(p => person._isAlive) </td>
+        </tr>
+    }
+        <tr>
+            @using (Html.BeginForm())
+            {
+                <td>  @Html.TextBox("name") </td >
+                <td>  @Html.TextBox("surname") </td>
+                <td>  @Html.TextBox("age") </td>
+                <td>  @Html.TextBox("isAlive") </td>
+            }
+        </tr>
+        <tr>@Html.ActionLink("Add New Person", "addPerson")</tr>
+    
 </table>

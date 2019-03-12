@@ -34,10 +34,11 @@ namespace Website.Controllers
         {
             return View(_personList);
         }
-
+        
         public ActionResult addPerson()
         {
-            _personList.Add(new Person("test", "test", 30));
+            Person p = new Person("test", "test", 30);
+            _personList.Add(p);
             return View("PersonList", _personList);
         }
     }
