@@ -1,0 +1,28 @@
+﻿@model Website.Models.Person
+
+@{
+    ViewBag.Title = "addPerson";
+}
+
+<h2>Add a new person</h2>
+
+<table>
+    <tr>
+        @{
+            Html.BeginForm("addPerson", "Person", FormMethod.Post);
+            {
+                <td> @Html.TextBoxFor(m => Model._name) </td>
+                <td> @Html.TextBoxFor(m => Model._surname) </td>
+                <td> @Html.TextBoxFor(m => Model._age) </td>
+                <td> @Html.RadioButtonFor(m => Model._isAlive,false) </td>
+                <input type="submit" value="Submit" />
+                Html.EndForm();
+            };
+        }
+    </tr>
+</table>
+
+<div>
+    @Html.ActionLink("Go back to list", "PersonList")
+</div>
+

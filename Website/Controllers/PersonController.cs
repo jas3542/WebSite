@@ -16,11 +16,6 @@ namespace Website.Controllers
             initializePersonsList(); 
         }
         
-        private List<Person> getPersonsList()
-        {
-            return _personList;
-        }
-
         private void initializePersonsList()
         {
             _personList = new List<Person>();
@@ -32,14 +27,19 @@ namespace Website.Controllers
 
         public ActionResult PersonList()
         {
-            return View(_personList);
+            return View("PersonList",_personList);
         }
         
         public ActionResult addPerson()
         {
-            Person p = new Person("test", "test", 30);
-            _personList.Add(p);
-            return View("PersonList", _personList);
+            return View("addPerson");
+
+        }
+        [HttpPost]
+        public ActionResult addPerson(Person person)
+        {
+            _personList.Add(person);
+            return View("addPerson");
         }
     }
 }

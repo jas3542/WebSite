@@ -17,6 +17,11 @@ namespace Website.Models
         [DisplayName("Still alive")]
         public bool _isAlive { get; set; } = true;
 
+
+        public Person()
+        {
+
+        }
         public Person(string namee, string surnamee, int agee)
         {
             _name = namee;

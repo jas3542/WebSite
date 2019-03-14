@@ -21,15 +21,8 @@
             <td> @Html.DisplayFor(p => person._isAlive) </td>
         </tr>
     }
-        <tr>
-            @using (Html.BeginForm())
-            {
-                <td>  @Html.TextBox("name") </td >
-                <td>  @Html.TextBox("surname") </td>
-                <td>  @Html.TextBox("age") </td>
-                <td>  @Html.TextBox("isAlive") </td>
-            }
-        </tr>
-        <tr>@Html.ActionLink("Add New Person", "addPerson")</tr>
-    
 </table>
+<div>
+    @Html.ActionLink("Add Person", "addPerson")
+</div>
+
