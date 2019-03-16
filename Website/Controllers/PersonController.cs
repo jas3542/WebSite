@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,27 +15,45 @@ namespace Website.Controllers
     {
         private List<Person> _personList;
 
+        private SQLiteConnection _sql;
+
         public PersonController()
         {
-            initializePersonsList(); 
+            string path = ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
+            _sql = new SQLiteConnection(path);
+            _personList = new List<Person>();
+            
         }
         
-        private void initializePersonsList()
-        {
-            _personList = new List<Person>();
-
-            _personList.Add(new Person("James","Smith",20));
-            _personList.Add(new Person("Tom","Dip",27));
-            _personList.Add(new Person("Margarita","flores",30));
-        }
 
         public ActionResult PersonList()
         {
+            _sql.Open();
+            SQLiteCommand sqlCommand;
+            SQLiteDataReader sqlReader;
+
+            sqlCommand = new SQLiteCommand("select * from Person", _sql);
+            
+            sqlReader = sqlCommand.ExecuteReader();
+
+            while(sqlReader.Read())
+            {
+                var name = sqlReader.GetValue(1).ToString();
+                var surname = sqlReader.GetValue(2).ToString();
+                var age = Convert.ToInt32( sqlReader.GetValue(3));
+                var isAlive = Convert.ToInt32(sqlReader.GetValue(4)) == 1 ? true : false;
+
+                _personList.Add(new Person(name, surname, age, isAlive ));
+            }
+            
             return View("PersonList",_personList);
         }
         
         public ActionResult addPerson()
         {
+            _sql.Open();
+
+
             return View("addPerson");
 
         }

@@ -78,3 +78,7 @@ C:\gitProjects\WebSite\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 C:\gitProjects\WebSite\Website\obj\Debug\Website.csproj.CopyComplete
 C:\gitProjects\WebSite\Website\obj\Debug\Website.dll
 C:\gitProjects\WebSite\Website\obj\Debug\Website.pdb
+C:\gitProjects\WebSite\Website\bin\DemoDB.db
+C:\gitProjects\WebSite\Website\bin\System.Data.SQLite.dll
+C:\gitProjects\WebSite\Website\bin\System.Data.SQLite.xml
+C:\gitProjects\WebSite\Website\bin\System.Data.SQLite.dll.config

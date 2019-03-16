@@ -22,11 +22,12 @@ namespace Website.Models
         {
 
         }
-        public Person(string namee, string surnamee, int agee)
+        public Person(string namee, string surnamee, int agee, bool isAlivee = true)
         {
             _name = namee;
             _surname = surnamee;
             _age = agee;
+            _isAlive = isAlivee;
         }
     }
 }
