@@ -73,7 +73,6 @@ C:\gitProjects\WebSite\Website\bin\Antlr3.Runtime.pdb
 C:\gitProjects\WebSite\Website\bin\System.Diagnostics.DiagnosticSource.xml
 C:\gitProjects\WebSite\Website\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\gitProjects\WebSite\Website\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\gitProjects\WebSite\Website\obj\Debug\Website.csprojAssemblyReference.cache
 C:\gitProjects\WebSite\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 C:\gitProjects\WebSite\Website\obj\Debug\Website.csproj.CopyComplete
 C:\gitProjects\WebSite\Website\obj\Debug\Website.dll

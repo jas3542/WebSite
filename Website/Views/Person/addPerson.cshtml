@@ -6,21 +6,31 @@
 
 <h2>Add a new person</h2>
 
-<table>
-    <tr>
-        @{
-            Html.BeginForm("addPerson", "Person", FormMethod.Post);
-            {
-                <td> @Html.TextBoxFor(m => Model._name) </td>
-                <td> @Html.TextBoxFor(m => Model._surname) </td>
-                <td> @Html.TextBoxFor(m => Model._age) </td>
-                <td> @Html.RadioButtonFor(m => Model._isAlive,false) </td>
-                <input type="submit" value="Submit" />
-                Html.EndForm();
-            };
-        }
-    </tr>
-</table>
+
+@{
+    Html.BeginForm("addPerson", "Person", FormMethod.Post);
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => Model._name)
+            @Html.TextBoxFor(m => Model._name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model._surname)
+            @Html.TextBoxFor(m => Model._surname, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model._age)
+            @Html.TextBoxFor(m => Model._age, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => Model._isAlive)
+            @Html.RadioButtonFor(m => Model._isAlive, false, new { @class = "form-radio-control" })
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    Html.EndForm();
+    };
+}
+
 
 <div>
     @Html.ActionLink("Go back to list", "PersonList")
