@@ -51,8 +51,6 @@ namespace Website.Controllers
         
         public ActionResult addPerson()
         {
-            _sql.Open();
-
 
             return View("addPerson");
 
@@ -60,8 +58,23 @@ namespace Website.Controllers
         [HttpPost]
         public ActionResult addPerson(Person person)
         {
-            _personList.Add(person);
-            return View("addPerson");
+            _sql.Open();
+            SQLiteCommand sqlCommand;
+            string insertQuery = $"insert into Person (Name,Surname,Age,isAlive) values ('{person._name}','{person._surname}',{person._age},{person._isAlive})";
+            sqlCommand = new SQLiteCommand(insertQuery, _sql);
+
+            var result = sqlCommand.ExecuteNonQuery();
+
+            if (result >= 1)
+            {
+                ViewBag.msg = "Person added";
+                return View("addPerson");
+            }else
+            {
+                ViewBag.msg = "Person not added";
+                return View("addPerson");
+            }
+
         }
     }
 }

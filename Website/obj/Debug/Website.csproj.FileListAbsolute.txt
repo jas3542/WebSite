@@ -81,3 +81,4 @@ C:\gitProjects\WebSite\Website\bin\DemoDB.db
 C:\gitProjects\WebSite\Website\bin\System.Data.SQLite.dll
 C:\gitProjects\WebSite\Website\bin\System.Data.SQLite.xml
 C:\gitProjects\WebSite\Website\bin\System.Data.SQLite.dll.config
+C:\gitProjects\WebSite\Website\obj\Debug\Website.csprojAssemblyReference.cache

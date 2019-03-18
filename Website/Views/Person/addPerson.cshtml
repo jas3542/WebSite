@@ -21,6 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(m => Model._age)
             @Html.TextBoxFor(m => Model._age, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => Model._age)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => Model._isAlive)
@@ -34,5 +35,14 @@
 
 <div>
     @Html.ActionLink("Go back to list", "PersonList")
+</div>
+
+<div class=".alert alert-info">
+    @{ 
+        if (ViewBag.msg != null)
+        {
+            @ViewBag.msg;
+        }
+    }
 </div>
 
