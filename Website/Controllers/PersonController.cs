@@ -24,7 +24,6 @@ namespace Website.Controllers
             _personList = new List<Person>();
         }
         
-
         public ActionResult PersonList()
         {
             _sql.Open();

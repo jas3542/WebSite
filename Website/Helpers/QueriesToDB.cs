@@ -7,5 +7,7 @@ namespace Website.Helpers
 {
     public static class QueriesToDB
     {
+
+
     }
 }
