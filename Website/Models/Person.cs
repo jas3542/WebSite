@@ -9,6 +9,8 @@ namespace Website.Models
 {
     public class Person
     {
+        public int _id { get; set; }
+
         [DisplayName("Name")]
         public string _name { get; set; }
 

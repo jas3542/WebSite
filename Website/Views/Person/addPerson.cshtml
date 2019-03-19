@@ -6,9 +6,16 @@
 
 <h2>Add a new person</h2>
 
-
+<div class=".alert alert-info">
+    @{
+        if (ViewBag.msg != null)
+        {
+            <a>@ViewBag.msg</a>
+        }
+    }
+</div>
 @{
-    Html.BeginForm("addPerson", "Person", FormMethod.Post);
+    Html.BeginForm("addPerson", "Person", FormMethod.Post,new { @class = "form-group" });
     {
         <div class="form-group">
             @Html.LabelFor(m => Model._name)
@@ -37,12 +44,5 @@
     @Html.ActionLink("Go back to list", "PersonList")
 </div>
 
-<div class=".alert alert-info">
-    @{ 
-        if (ViewBag.msg != null)
-        {
-            @ViewBag.msg;
-        }
-    }
-</div>
+
 

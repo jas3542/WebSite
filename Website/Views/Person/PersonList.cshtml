@@ -3,7 +3,14 @@
 @{
     ViewBag.Title = "Person";
 }
-
+<div class=".alert alert-info">
+    @{
+        if (ViewBag.msg != null)
+        {
+            <a>@ViewBag.msg</a>
+        }
+    }
+</div>
 <table class="table">
     <tr>
         <th> @Html.DisplayNameFor(model => model[0]._name) </th>
@@ -14,12 +21,13 @@
     </tr>
     @foreach (var person in Model)
     {
-        <tr>
-            <td> @Html.DisplayFor(p => person._name) </td>
-            <td> @Html.DisplayFor(p => person._surname) </td>
-            <td> @Html.DisplayFor(p => person._age) </td>
-            <td> @Html.DisplayFor(p => person._isAlive) </td>
-        </tr>
+    <tr>
+        <td> @Html.DisplayFor(p => person._name) </td>
+        <td> @Html.DisplayFor(p => person._surname) </td>
+        <td> @Html.DisplayFor(p => person._age) </td>
+        <td> @Html.DisplayFor(p => person._isAlive) </td>
+        <td> @Html.ActionLink("Delete", "deletePerson", person ,new { @class = "btn btn-sucess"}) </td>
+    </tr>
     }
 </table>
 <div>
