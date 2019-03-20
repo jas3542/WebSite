@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Website.Helpers;
 using Website.Models;
 
 namespace Website.Controllers
@@ -16,44 +17,20 @@ namespace Website.Controllers
         private List<Person> _personList;
 
         private SQLiteConnection _sql;
+        private QueriesToDB _queryDB;
 
         public PersonController()
         {
             string path = ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
             _sql = new SQLiteConnection(path);
             _personList = new List<Person>();
+
+            _queryDB = new QueriesToDB();
         }
         
         public ActionResult PersonList()
         {
-            _sql.Open();
-            SQLiteCommand sqlCommand;
-            SQLiteDataReader sqlReader;
-
-            sqlCommand = new SQLiteCommand("SELECT * from Person", _sql);
-            
-            sqlReader = sqlCommand.ExecuteReader();
-
-            while(sqlReader.Read())
-            {
-                var id = Convert.ToInt32(sqlReader.GetValue(0));
-                var name = sqlReader.GetValue(1).ToString();
-                var surname = sqlReader.GetValue(2).ToString();
-                var age = Convert.ToInt32( sqlReader.GetValue(3));
-                var isAlive = Convert.ToInt32(sqlReader.GetValue(4)) == 1 ? true : false;
-
-                var person = new Person()
-                {
-                    _id = id,
-                    _name = name,
-                    _surname = surname,
-                    _age = age,
-                    _isAlive = isAlive
-                };
-                _personList.Add(person);
-            }
-            _sql.Close();
-            return View("PersonList",_personList);
+            return View("PersonList", _queryDB.selectQuery());
         }
         
         public ActionResult addPerson()
@@ -64,13 +41,7 @@ namespace Website.Controllers
         [HttpPost]
         public ActionResult addPerson(Person person)
         {
-            _sql.Open();
-            SQLiteCommand sqlCommand;
-            string insertQuery = $"INSERT into Person (Name,Surname,Age,isAlive) values ('{person._name}','{person._surname}',{person._age},{person._isAlive})";
-            sqlCommand = new SQLiteCommand(insertQuery, _sql);
-
-            var result = sqlCommand.ExecuteNonQuery();
-            _sql.Close();
+            var result = _queryDB.insertQuery(person);
 
             if (result >= 1)
             {
