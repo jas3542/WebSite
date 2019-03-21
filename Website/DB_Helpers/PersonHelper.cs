@@ -8,21 +8,21 @@ using Website.Models;
 
 namespace Website.Helpers
 {
-    public sealed class QueriesToDB
+    public sealed class PersonHelper
     {
         private SQLiteConnection _sql;
         private SQLiteCommand _sqlCommand;
         private SQLiteDataReader _sqlReader;
         private string _path;
         
-        public QueriesToDB()
+        public PersonHelper()
         {
             _path = ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
             _sql = new SQLiteConnection(_path);
             _sqlCommand = new SQLiteCommand();
         }
 
-        public List<Person> selectQuery()
+        public List<Person> getPersonsList()
         {
             List<Person> personList = new List<Person>();
 
@@ -53,7 +53,7 @@ namespace Website.Helpers
             return personList;
         }
 
-        public int insertQuery(Person person)
+        public int insertPerson(Person person)
         {
             _sql.Open();
             string insertQuery = $"INSERT into Person (Name,Surname,Age,isAlive) values ('{person._name}','{person._surname}',{person._age},{person._isAlive})";
@@ -65,7 +65,17 @@ namespace Website.Helpers
             return result;
         }
 
+        public int deletePerson(Person person)
+        {
+            _sql.Open();
+            string deleteQuery = $"DELETE FROM Person WHERE id='{person._id}'";
+            _sqlCommand = new SQLiteCommand(deleteQuery, _sql);
 
+            var result = _sqlCommand.ExecuteNonQuery();
+            _sql.Close();
 
+            return result;
+        }
+        
     }
 }

@@ -14,23 +14,16 @@ namespace Website.Controllers
 {
     public class PersonController : Controller
     {
-        private List<Person> _personList;
-
-        private SQLiteConnection _sql;
-        private QueriesToDB _queryDB;
+        private PersonHelper _queryDB;
 
         public PersonController()
         {
-            string path = ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
-            _sql = new SQLiteConnection(path);
-            _personList = new List<Person>();
-
-            _queryDB = new QueriesToDB();
+            _queryDB = new PersonHelper();
         }
         
         public ActionResult PersonList()
         {
-            return View("PersonList", _queryDB.selectQuery());
+            return View("PersonList", _queryDB.getPersonsList());
         }
         
         public ActionResult addPerson()
@@ -41,14 +34,12 @@ namespace Website.Controllers
         [HttpPost]
         public ActionResult addPerson(Person person)
         {
-            var result = _queryDB.insertQuery(person);
+            var result = _queryDB.insertPerson(person);
 
-            if (result >= 1)
-            {
+            if (result >= 1){
                 ViewBag.msg = "Person added";
                 return View("addPerson");
-            }else
-            {
+            }else{
                 ViewBag.msg = "Person not added";
                 return View("addPerson");
             }
@@ -56,20 +47,11 @@ namespace Website.Controllers
         
         public ActionResult deletePerson(Person person)
         {
-            _sql.Open();
-            SQLiteCommand sqlCommand;
-            string deleteQuery = $"DELETE FROM Person WHERE id='{person._id}'";
-            sqlCommand = new SQLiteCommand(deleteQuery, _sql);
-
-            var result = sqlCommand.ExecuteNonQuery();
-            _sql.Close();
-
-            if (result >= 1)
-            {
+            var result = _queryDB.deletePerson(person);
+            
+            if (result >= 1){
                 return RedirectToAction("PersonList");
-            }
-            else
-            {
+            }else{
                 ViewBag.msg = "Person not deleted";
                 return View("PersonList");
             }
