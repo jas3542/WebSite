@@ -8,14 +8,14 @@ using Website.Models;
 
 namespace Website.Helpers
 {
-    public sealed class PersonHelper
+    public sealed class PersonService
     {
         private SQLiteConnection _sql;
         private SQLiteCommand _sqlCommand;
         private SQLiteDataReader _sqlReader;
         private string _path;
         
-        public PersonHelper()
+        public PersonService()
         {
             _path = ConfigurationManager.ConnectionStrings["DefaultDB"].ConnectionString;
             _sql = new SQLiteConnection(_path);

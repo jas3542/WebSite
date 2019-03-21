@@ -14,11 +14,11 @@ namespace Website.Controllers
 {
     public class PersonController : Controller
     {
-        private PersonHelper _queryDB;
+        private PersonService _queryDB;
 
         public PersonController()
         {
-            _queryDB = new PersonHelper();
+            _queryDB = new PersonService();
         }
         
         public ActionResult PersonList()
