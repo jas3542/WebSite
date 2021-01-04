@@ -1,5 +1,5 @@
 # WebSite
-MVC project to Manage Persons with SQLiteDB and Bootstrap.
+MVC project to Manage people with SQLiteDB and Bootstrap.
 
 # Page 1: #
 ![My image](https://github.com/jas3542/WebSite/blob/master/Website/Page1.JPG)
